@@ -2,6 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import { login } from '../../services/authService'
 import { type AxiosResponse } from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const loginSchema = Yup.object().shape(
   {
@@ -17,19 +18,22 @@ const LoginForm = () => {
     email: '',
     password: ''
   }
+
+  const navigate = useNavigate()
+
   return (
     <Formik
       initialValues={ initialCredentials }
       validationSchema={ loginSchema }
       onSubmit={ async (values) => {
-        // await new Promise((response) => setTimeout(response, 2000))
-        // alert(JSON.stringify(values, null, 2))
-        // console.table(values)
         try {
           const response: AxiosResponse = await login(values.email, values.password)
           if (response.status === 200) {
             if (response.data.token) {
+              // Persits the JWT in sessionStorage
               sessionStorage.setItem('sessionJWTToken', response.data.token)
+              // navigate to the root of the app after login
+              navigate('/')
             } else {
               throw new Error('Error generating login token')
             }
