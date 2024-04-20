@@ -1,0 +1,1 @@
+wt --% -d C:\Users\danim\Dev\fullstack\code-verifier-frontend; split-pane -d C:\Users\danim\Dev\fullstack\code-verifier-backend; split-pane -H -d C:\Users\danim\Dev\fullstack\MongoDb\bin

@@ -12,18 +12,23 @@ const GroceryItem: React.FC<GroceryItemProps> = ({ item }) => {
 }
 `
 
-const Editor = () => {
+interface Props {
+  children: string,
+  language?: string
+}
+
+const Editor = ({ children, language }: Props) => {
   return (
-    <Highlight
+  <Highlight
     theme={themes.shadesOfPurple}
-    code={codeBlock}
-    language="tsx"
+    code={children}
+    language={language || "md"}
   >
     {({ className, style, tokens, getLineProps, getTokenProps }) => (
       <pre style={style}>
         {tokens.map((line, i) => (
           <div key={i} {...getLineProps({ line })}>
-            <span>{i + 1}</span>
+            <span>{i + 1}  </span>
             {line.map((token, key) => (
               <span key={key} {...getTokenProps({ token })} />
             ))}
@@ -34,5 +39,4 @@ const Editor = () => {
   </Highlight>
 )
 }
-
 export default Editor
