@@ -1,32 +1,16 @@
 // React Router DOM Imports
-import { BrowserRouter as Router, Link } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import AppRoutes from './routes/Routes'
-import CopyRights from './components/dashboard/CopyRights'
+import StickyFooter from './components/dashboard/StickyFooter'
 
 function App() {
 
   return (
     <>
-      <Router>
-        <nav>
-          <ul>
-            <li>
-              <Link to='/'>Home</Link>
-            </li>
-            <li>
-              <Link to='/login'>Login</Link>
-            </li>
-            <li>
-              <Link to='/register'>Register</Link>
-            </li>
-            <li>
-              <Link to='/katas'>Katas</Link>
-            </li>
-          </ul>
-        </nav>   
+      <Router> 
         <AppRoutes/>   
       </Router>
-      <CopyRights />
+      <StickyFooter />
     </>
   )
 }
